@@ -2,18 +2,12 @@ import React, { useContext } from 'react';
 import AppContext from '../contexts/AppContext';
 
 
-
-
-
-
-
 const RecommendationContainer = () => 
 {
 const {redirectUriAuth, recommendations, selectedRecommendation, setRecommendation, setSelectedRecommendation} = useContext(AppContext);
 
 const handleBangumiLogin = () => {
   const clientId = 'bgm276564fc2e63a9d1a'; // 从 Bangumi 网站获得的客户端 ID
-  // const redirectUri = encodeURIComponent('https://bangrecs.net/bgmrec/oauth/callback'); // 需要和在 Bangumi 注册应用时填写的 redirect_uri 一致
   const redirectUri = encodeURIComponent(redirectUriAuth); // 需要和在 Bangumi 注册应用时填写的 redirect_uri 一致
   const responseType = 'code';
   const state =  Math.random().toString(36).substring(7) + Date.now().toString(36); // 示例
