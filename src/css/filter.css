@@ -1,0 +1,58 @@
+.filter-container {
+    display: flex;
+    max-width: 800px;
+    /* justify-content: space-between; */
+    align-items: left;
+    /* justify-content: center; */
+    /* flex-wrap: wrap;  */
+    margin: 20px auto;
+    padding: 10px;
+    /* background-color: #ffe2fc; */
+    border-radius: 20px;
+    flex-direction: column;    
+    box-shadow: 0 4px 8px rgba(180, 117, 117, 0.1);
+}
+  
+  .filter-group {
+    display: flex;
+    /* display: block; */
+    align-items: center;
+    /* align-items: left; */
+    margin: 10px;
+    border-radius: 12px;
+  }
+  
+  .filter-group label,
+  .filter-group select,
+  .filter-group .react-datepicker-wrapper,
+  .filter-group input {
+    margin: 5px 10px;
+  }
+  
+  .filter-group select{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid #dfe1e5;
+    border-radius: 24px;
+    box-shadow: none;
+    width: 100px;
+    margin: 20px auto;
+  }
+
+  /* .react-datepicker-wrapper {
+    width: 150px;
+  } */
+  
+label{
+    margin-right: 10px;
+  }
+  
+  /* 如果需要，可以添加媒体查询以在窄屏幕上调整布局 */
+  @media (max-width: 800px) {
+    .filter-container {
+      flex-direction: column;
+    }
+  }
+  

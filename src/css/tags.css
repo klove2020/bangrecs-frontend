@@ -1,0 +1,102 @@
+
+.tag-input-container {
+    position: relative; /* 相对定位，作为子元素的定位参考 */
+    display: inline-flex; 
+    align-items: center; /* 垂直居中对齐 */
+    max-width: 120px;
+    flex: 1 0 calc(33.333% - 10px); /* 每行三个标签 */
+    margin: 5px;
+  }
+  
+
+
+  .tags-container {
+    /* border: 1px dashed black; */
+    border-radius: 20px;
+    display: flex;
+    max-width: 400px;
+    flex-wrap: wrap;
+    margin-left: 20px;
+    /* gap: 8px; 为标签添加间距 */
+  }
+
+  .removeGroup-icon {
+    /* background-color: #ffffff; */
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px 5px;
+    margin-left: 12px;
+    color: grey; /* 或者其他任何适合你设计的颜色 */
+  }
+  
+  .removeGroup-icon:hover{
+    color: red; /* 或者其他任何适合你设计的颜色 */
+  }
+    
+  /* .removeGroup-icon:hover ~ .filter-group {
+    background-color: red;
+  } */
+
+  #addtag{
+    padding: 1px 5px;
+    border: 1px solid #000;
+    background-color: #ffffff;
+    border-radius: 20px;
+    
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s;
+    /* width: 20px; */
+    /* height: 20px; */
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    text-align: center; /* 文本居中 */
+  }
+
+  #tag-input {
+    border: 1px solid #ccc; /* 添加边框 */
+    padding: 2px;
+    background-color:rgb(255,255,255);
+    
+    flex-grow: 1;
+    /* border-radius: 12px 0px 12px 0px; */
+    border-radius: 12px;
+    width: 80px;
+    height: 24px;
+    outline: none;
+    text-align: center;
+    position: relative; 
+    /* padding-left: 20px; */
+  }
+  
+
+  .tag-icon {
+    margin-left: 5px; /* 调整左侧间距 */
+    color: rgb(105, 112, 110); /* 选择合适的颜色 */
+  }
+
+  #removetag {
+    background-color: rgba(251, 245, 245, 0.5); /* 50% 透明度的背景颜色 */
+    color: rgb(248, 106, 106);
+    /* opacity: 0.5; */
+    border: none;
+    border-radius: 5px;
+    padding: 0; /* 移除内边距 */
+    cursor: pointer;
+    font-size: 6px;
+    transition: background-color 0.3s;
+    position: absolute; /* 绝对定位，相对于父元素 */
+    top: 0; /*顶部对齐*/
+    right: 3px; /* 右侧对齐 */
+    width: 15px; /* 设置宽度和高度 */
+    height: 15px;
+    /* line-height: 20px; 垂直居中文本 */
+    text-align: center; /* 水平居中文本 */
+  }
+  
+  #removetag:hover {
+    background-color: darkred;
+  }
+  

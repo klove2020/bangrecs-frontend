@@ -1,0 +1,147 @@
+/* .item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+
+.item img {
+    width: 150px;
+    height: auto;
+    margin-right: 20px;
+    border-radius: 8px;
+}
+
+.item-info h3 {
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.item-info p {
+    text-decoration: none;
+    margin: 0;
+    color: #666;
+    font-size: 0.9em;
+    max-width: 600px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+} */
+.item {
+    border: 1px solid; 
+    display: flex;
+    align-items: center; /* 对齐到顶部 */
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    padding-bottom: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    /* cursor: grab; */
+    margin-bottom: 20px; /* 添加间距 */
+    position: relative; 
+    /* margin-bottom: 20px; 添加间距 */
+}
+
+  
+.item:active {
+    cursor: grabbing;
+  }
+  
+
+
+.rating .svg-inline--fa {
+    color:rgba(255, 180, 0, 1);
+    margin-right: 5px;
+  }
+  
+
+.item img {
+    width: 150px; /* 调整大小 */
+    height: auto;
+    margin-right: 20px;
+    border-radius: 8px;
+    margin-top: 8px;
+    margin-left: 4px;
+
+    padding-top: 10px;
+}
+
+.item-info {
+    /* position: relative; */
+    align-items: center;
+}
+
+.item-info h3 {
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 1.0em;
+    color: #333; /* 调整颜色 */
+}
+
+.item-info h4#score {
+    position: absolute; 
+    top: 10px; 
+    right: 10px; 
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 1.5em;
+    color: #555;
+    font-style: italic; /* 添加斜体样式 */
+    font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+}
+
+#stype {
+    /* top:auto; */
+    position: absolute; 
+    top: 3px; 
+    left: 3px;
+    right: auto; /* 距离右侧的距离 */
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 1.0em;
+    color: #aaa;
+    font-style: italic; 
+}
+
+
+.item-info h5 {
+    margin: 0;
+    margin-bottom: 10px; /* 添加间距 */
+    font-size: 0.9em;
+    color: #777;
+}
+
+.item-info p {
+    /* position: relative; */
+    margin: 0;
+    color: #666;
+    font-size: 0.9em;
+    max-width: 600px;
+    min-width: 100%;
+    min-height: 1em;
+    /* height: 600px; */
+    /* width: 600px; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-height: 1.4; /* 调整行高 */
+    font-family: "Hiragino Sans GB", "Hiragino Kaku Gothic ProN", "游ゴシック", "Yu Gothic", sans-serif;
+}
+
+@media (min-width: 768px) { /* 当屏幕宽度大于或等于768px时 */
+    .item-info p {
+      min-width: 600px; /* 设置最小宽度为600px */
+    }
+  }

@@ -1,0 +1,72 @@
+.searchline {
+  display: flex;
+  align-items: center;
+  min-width: 50px;
+  justify-content: center;
+  padding: 10px 0px;
+  /* margin-left: 40px;
+  margin-right: 40px;
+   */
+}
+
+.search-container {
+  display: flex;
+  min-width: 10px;
+  align-items: center;
+  border: 1px solid #dfe1e5;
+  border-radius: 24px;
+  /* width: 350px; */
+  flex-grow: 1; 
+  max-width: 600px;
+  /* margin: 15px ; */
+}
+
+
+.search-container button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #f8f9fa;
+  border-radius: 0 24px 24px 0; 
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s;
+  flex-grow: 0; 
+  flex-shrink: 0; 
+  }
+
+.search-container form input {
+    border: none;
+    padding: 10px 20px;
+    flex-grow: 1;
+    min-width: 50px;
+    /* 允许输入框自动扩展 */
+    border-radius: 0 0 0 0;
+    outline: none;
+    font-size: 15px;
+  }
+  
+
+input {
+  border: none;
+  padding: 10px 20px;
+  flex-grow: 1;
+  min-width: 50px;
+  /* 允许输入框自动扩展 */
+  border-radius: 0 0 0 0;
+  outline: none;
+  font-size: 15px;
+}
+
+
+.search-input {
+  display: flex;
+  padding: 10px 20px;
+  align-items: center;
+  border: 1px solid #ccc;
+  text-align: center;
+  border-radius: 4px;
+  
+}
+
+
+

@@ -1,0 +1,32 @@
+button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #f8f9fa;
+    border-radius: 15px 15px 15px 15px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s;
+  }
+
+button:hover {
+    background-color: #e8e8e8;
+  }
+
+
+.menu-button {
+    /* font-size: 24px; */
+    /* line-height: 24px; */
+    background: none;
+    border: none;
+    cursor: pointer;
+    background-color:#f3f3f3;
+    flex-grow: 1; 
+    max-width: 50px;
+  }
+    
+
+  .menu-button:before {
+    content: '\2630'; /* Unicode字符代表三横线 */
+  }
+  
+
