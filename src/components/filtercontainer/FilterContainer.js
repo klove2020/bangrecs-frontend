@@ -12,7 +12,7 @@ import 'antd/dist/reset.css'; // 引入样式
 import Switch from 'react-switch';
 import Autosuggest from 'react-autosuggest';
 import axios from 'axios';
-
+import moment from 'moment';
 
 function TooltipComponent({ text }) {
   return (
@@ -135,6 +135,48 @@ const FilterContainer = () => {
   };
 
 
+
+
+  
+
+  const parseDate = (input) => {
+      let formattedDate = "";
+  
+      // 去除可能的分隔符
+      const cleanedInput = String(input).replace(/[-.]/g, '');
+  
+      console.log(cleanedInput);
+      switch (cleanedInput.length) {
+          case 2:
+              if (parseInt(cleanedInput) <= 30) {
+                  formattedDate = `20${cleanedInput}0101`;
+              } else {
+                  formattedDate = `19${cleanedInput}0101`;
+              }
+              break;
+          case 4:
+              formattedDate = `${cleanedInput}01`;
+              break;
+          case 5:
+              formattedDate = `${cleanedInput.slice(0, 4)}0${cleanedInput.slice(4)}01`;
+              break;
+          case 6:
+              formattedDate = `${cleanedInput}01`;
+              break;
+          case 8:
+              formattedDate = cleanedInput;
+              break;
+          default:
+              throw new Error("Invalid date format");
+      }
+  
+      return moment(formattedDate, "YYYYMMDD");
+  }
+  
+  
+
+
+
   return (
     showFilterTool && (
       <div className="filter-container">
@@ -154,7 +196,7 @@ const FilterContainer = () => {
         )}
 
 
-        {["p", "p_dev"].includes(selectedRecommendation) && (
+        {["p", "p_dev", "MF"].includes(selectedRecommendation) && (
           <div className="filter-group">
             <TooltipComponent text="同步当前用户的最新收藏。(对查询速度影响较大)" />
             <label>实时更新: </label>
@@ -184,8 +226,8 @@ const FilterContainer = () => {
           </div>
         )}
 
-        {["pop", "p", "p_dev", "s"].includes(selectedRecommendation) && (<div className="filter-group">
-          <TooltipComponent text="设定候选作品的时间范围。" />
+        {["pop", "p", "p_dev", "s", "MF"].includes(selectedRecommendation) && (<div className="filter-group">
+          <TooltipComponent text="设定候选作品的时间范围, 格式YYYY-M-D。" />
           <label>时间过滤: </label>
           <Switch
             checked={isDateFilterEnabled}
@@ -202,15 +244,19 @@ const FilterContainer = () => {
         {isDateFilterEnabled && (
           <div className="filter-group">
             {/* <label>时间: </label> */}
-            <DatePicker selected={startDate}
-              format={"YYYY-M-D"}
-              onChange={(date) => setStartDate(date)} />
+            <DatePicker selected={startDate} 
+            format={"YYYY-M-D"} 
+            onChange={(date) => {
+              // setStartDate(parseDate(date));
+              setStartDate(date);
+              }} />
+
             <FontAwesomeIcon icon={faArrowRight} style={{ margin: '0 8px' }} />
             <DatePicker format={"YYYY-M-D"} selected={endDate} onChange={(date) => setEndDate(date)} />
           </div>
         )}
 
-        {["pop", "p", "p_dev", "s"].includes(selectedRecommendation) && (<div className="filter-group">
+        {["pop", "p", "p_dev", "s", "MF"].includes(selectedRecommendation) && (<div className="filter-group">
           <TooltipComponent text="设定候选作品的标签。(组内关系为且，组间关系为或)" />
           <label>标签过滤: </label>
           <Switch

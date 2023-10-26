@@ -5,7 +5,7 @@ import Select from 'react-select';
 
 
 const SearchLine = () => {
-    const { setIsRealTimeUpdate,setIsDateFilterEnabled, options, customStyles, uid, setUid, fetchData, setShowFilterTool, filter, setFilter, showFilterTool, selectedRecommendation, isLoading, setData, setStartDate, setEndDate} = useContext(AppContext);
+    const { setIsTagFilterEnabled, setIsRealTimeUpdate,setIsDateFilterEnabled, options, customStyles, uid, setUid, fetchData, setShowFilterTool, filter, setFilter, showFilterTool, selectedRecommendation, isLoading, setData, setStartDate, setEndDate} = useContext(AppContext);
     
     const [inputvalue, setInputvalue] = useState('');
     
@@ -38,6 +38,7 @@ const SearchLine = () => {
             case "s":
                 setShowFilterTool(true);
                 setInputvalue('');
+                setIsTagFilterEnabled(true);
                 break;
             case "pop":
                 setShowFilterTool(true);
@@ -47,12 +48,17 @@ const SearchLine = () => {
                 setShowFilterTool(true);
                 setInputvalue(uid);
                 break;
+            case "MF":
+                setShowFilterTool(true);
+                setInputvalue(uid);
+                setIsDateFilterEnabled(true);
+                break;
             case "p_dev":
                 setShowFilterTool(true);
                 setInputvalue(uid);
                 break;
-                default:
-                setShowFilterTool(false);
+            default:
+                setShowFilterTool(true);
         }
     }, [selectedRecommendation, setShowFilterTool, setUid, uid, setInputvalue]);
 
@@ -61,6 +67,8 @@ const SearchLine = () => {
         switch (selectedRecommendation) {
             case "s":
                 return "这里禁止输入";
+            case "MF":
+                return "输入用户id";
             case "pop":
                 return "这里禁止输入"; // 你可以根据需要替换
             case "p":
@@ -84,8 +92,8 @@ const SearchLine = () => {
                 <input value={inputvalue} onChange={(e) => {setUid(e.target.value); setInputvalue(e.target.value)}} 
                 placeholder={ getPlaceholderText()} 
                 
-                // disabled = {selectedRecommendation === "pop" || selectedRecommendation === "s"} 
-                disabled = {selectedRecommendation != "trans"} 
+                disabled = {selectedRecommendation === "pop" || selectedRecommendation === "s"} 
+                // disabled = {selectedRecommendation != "trans"} 
                     />                
                 <button onClick={() => {handleQuery() }}>                    
                     {isLoading ? <div className="loading-icon"></div> : '查询'}

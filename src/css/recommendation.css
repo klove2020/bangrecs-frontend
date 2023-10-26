@@ -1,0 +1,113 @@
+.rec {
+    min-width: 50px;
+    justify-content: center;
+    display: flex;
+
+}
+
+.recommendation-container {
+    background-color: #e8e8e8;
+    position: relative;
+    align-items: center;
+    display: flex;
+    min-width: 10px;
+    border: 1px solid #dfe1e5;
+    border-radius: 24px;
+    /* width: 350px; */
+    /* flex-grow: 1;  */
+    max-width: 600px;
+
+}
+
+.recommendation-container select {
+    position: absolute;
+    top: 100%;
+    /* 这会将select元素放在容器的底部，即按钮的正下方 */
+    left: 0;
+    /* 这会确保select元素与容器的左侧对齐 */
+    z-index: 1000;
+    /* 这会确保select元素位于其他内容之上 */
+    /* 你可能还需要其他样式来调整select元素的外观，例如宽度、边框等 */
+}
+
+.recommendation-container button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #e8e8e8;
+    border-radius: 24px;
+    cursor: pointer;
+    outline: none;
+    /* transition: background-color 0.3s; */
+}
+
+.recommendation-container button:hover {
+    background-color: #f8f9fa;
+}
+
+/* .custom-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-dropdown ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border-radius: 4px;
+    z-index: 1000;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #dfe1e5;
+    background-color: #ffffff;
+    width: 100%;
+} */
+
+.custom-dropdown {
+    position: relative;  /* 为了使下拉框基于这个按钮定位 */
+    display: inline-block;
+}
+
+.custom-dropdown button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #e8e8e8;
+    border-radius: 24px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+.custom-dropdown button:hover {
+    background-color: #f8f9fa;
+}
+
+.custom-dropdown ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;  /* 下拉框会显示在按钮的下方 */
+    top: 100%;
+    left: 0;
+    border: 1px solid #dfe1e5;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    z-index: 1;  /* 使下拉框显示在其他元素之上 */
+}
+
+.custom-dropdown li {
+    border-top: 2px solid #dfe1e5;  /* 添加顶部边框 */
+    border-bottom: 2px solid #dfe1e5;  /* 添加底部边框 */
+    padding: 8px 16px;
+
+    cursor: pointer;
+    background-color: #fafafa;
+    border-radius: 16px;
+    transition: background-color 0.3s;
+}
+
+.custom-dropdown li:hover {
+    background-color: #f8f9fa;
+}

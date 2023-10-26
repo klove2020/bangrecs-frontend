@@ -14,7 +14,10 @@
     border-radius: 6px;
     position: absolute;
     z-index: 1;
-    bottom: 125%; /* Position the tooltip above the icon */
+    
+    /* bottom: 125%; Position the tooltip above the icon */
+    top: 125%; /* Position the tooltip above the icon */
+
     left: 50%;
     margin-left: -100px; /* Center the tooltip */
     opacity: 0;

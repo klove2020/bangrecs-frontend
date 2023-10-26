@@ -76,31 +76,21 @@ export const AppProvider = ({ children }) => {
   };
 
   const recommendations = [
-    { key: 'p', name: '个性化推荐' },
+    { key: 'p', name: '推荐作品' },
     // { key: 'p_dev', name: '个性化推荐(dev)' },
+    { key: 'MF', name: '推荐作品(MF)' },
     { key: 'pop', name: '流行作品' },
     
     // { key: 'cp', name: '对话式推荐' },    
     { key: 'trans', name: '条目转移' },
     { key: 's', name: '多标签搜索' },
+    
   ];
 
 
   const fetchData = async () => {
     try {
       setIsLoading(true);
-      // 使用过滤器值和推荐方式作为查询参数
-      // const typeQuery = filter === 'all' ? '' : `&type=${filter}`;
-      // const recQuery = recommendation ? `?strategy=${recommendation}` : '?strategy=pop';
-      // const dateQuery = `&startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`;
-      // const tagsQuery = tags ? `&tags=${tags}` : '';
-      // const resultnumQuery = resultCount ? `&topk=${resultCount}` : '';
-      // const popdaysQuery = popdays ? `&popdays=${popdays}` : '';
-
-      // const isRealTimeUpdateQuery = isRealTimeUpdate ? `&update_f=${isRealTimeUpdate}` : '';
-      // const response = await fetch(`https://bangrecs.net/api/v4/rec/${uid ? uid : '-1'}${recQuery}${typeQuery}${dateQuery}${tagsQuery}${resultnumQuery}${isRealTimeUpdateQuery}${popdaysQuery}`);
-      // const data = response.data;
-      // const result = await response.json();
 
       console.log(startDate);
       const requestData = {
@@ -121,6 +111,8 @@ export const AppProvider = ({ children }) => {
         switch (selectedRecommendation) {
           case "p":
             return axios.post(`https://bangrecs.net/api/v4/rec/${uid ? uid : '-1'}/`, requestData);
+          case "MF":
+            return axios.post(`https://bangrecs.net/api/v4/rec/${uid ? uid : '-1'}/`, requestData);            
           case "p_dev":
             return axios.post(`https://bangrecs.net/api/v4/rec_dev/${uid ? uid : '-1'}/`, requestData);
           case "pop":
