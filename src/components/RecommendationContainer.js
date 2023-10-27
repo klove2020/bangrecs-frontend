@@ -38,7 +38,7 @@ function _Tooltip({ x }) {
 }
 
 const RecommendationContainer = () => {
-  const { redirectUriAuth, recommendations, selectedRecommendation, setRecommendation, setSelectedRecommendation } = useContext(AppContext);
+  const { combinedKeys, redirectUriAuth, recommendations, selectedRecommendation, setRecommendation, setSelectedRecommendation } = useContext(AppContext);
 
   const handleBangumiLogin = () => {
     const clientId = 'bgm276564fc2e63a9d1a'; // 从 Bangumi 网站获得的客户端 ID
@@ -53,74 +53,81 @@ const RecommendationContainer = () => {
   };
 
 
-
-  // const combinedKeys = ['p', 'MF', 'trans'];
-  const combinedKeys = ['p', 'MF'];
-
-
   const [showOptions, setShowOptions] = useState(false);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
 
   const toggleOptions = () => {
     setShowOptions(prev => !prev);
+    setIsButtonClicked(prev => !prev); // 切换按钮点击状态
   }
-  const [model, setModel] = useState("p"); 
+  const [model, setModel] = useState("p");
 
   const handleOptionClick = (key) => {
     setSelectedRecommendation(key);
     setRecommendation(key);
     setModel(key);
     setShowOptions(false);  // 关闭下拉框    
+    setIsButtonClicked(false); // 切换按钮点击状态
   }
 
   const dropdownRef = useRef(null);
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setShowOptions(false);
+      setShowOptions(false);
+      setIsButtonClicked(false); // 切换按钮点击状态
     }
-}
+  }
 
-useEffect(() => {
+  useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
-        // 清除事件监听器，以防止内存泄漏
-        document.removeEventListener("mousedown", handleClickOutside);
+      // 清除事件监听器，以防止内存泄漏
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-}, []);
+  }, []);
 
-  
+
 
   return (
     <div className='rec'>
       <div className="recommendation-container">
-        <div className="custom-dropdown"  ref={dropdownRef}>
+        <div className="custom-dropdown" ref={dropdownRef}>
 
           {/* 注意这里我们给按钮添加了一个样式flex-container来设置flex布局，使得内容和下拉图标在同一行 */}
-          <button 
-          onClick={ ()=>{
+          <button
+            onClick={() => {
               setRecommendation(model);
               setSelectedRecommendation(model);
-          }}
+            }}
+            style={{
+              backgroundColor: combinedKeys.includes(selectedRecommendation) ? '#f8f9fa' : '#e8e8e8',
+              display: 'flex', alignItems: 'center',
+              borderBottomLeftRadius: isButtonClicked ? '0px' : '24px',
+              borderBottomRightRadius: isButtonClicked ? '0px' : '24px',
+              borderTopLeftRadius: isButtonClicked ? '12px' : '24px',
+              borderTopRightRadius: isButtonClicked ? '12px' : '24px',
 
-                  style={{ 
-                          backgroundColor: combinedKeys.includes(selectedRecommendation) ? '#f8f9fa' : '#e8e8e8',
-                          display: 'flex', alignItems: 'center' // 这里设置按钮内部内容垂直居中并水平排列
-                         }}
+              border: isButtonClicked ? '1px solid #dfe1e5' : 'none',
+            }}
           >
             <_Tooltip x={selectedRecommendation} />
             {/* {selectedRec ? selectedRec.name : recommendations.find(rec => ["p"].includes(model)).name} */}
             {recommendations.find(rec => rec.key === model).name}
             {/* 下拉图标 */}
-            <FontAwesomeIcon icon={faChevronDown} style={{marginLeft: '10px'}} onClick={toggleOptions} />
+            <FontAwesomeIcon icon={faChevronDown} style={{ marginLeft: '10px' }} onClick={toggleOptions} />
           </button>
 
           {showOptions && (
             <ul>
-              {recommendations.filter(rec => combinedKeys.includes(rec.key)).map((rec) => (
-                <li key={rec.key} onClick={() => handleOptionClick(rec.key)}>
+              {recommendations.filter(rec => combinedKeys.includes(rec.key)).map((rec, index, array) => (
+                <li
+                  key={rec.key}
+                  onClick={() => handleOptionClick(rec.key)}
+                  className={index === array.length - 1 ? 'rounded-bottom-corners' : ''}
+                >
                   {rec.name}
                 </li>
-              ))}
-            </ul>
+              ))}            </ul>
           )}
         </div>
 
@@ -139,7 +146,7 @@ useEffect(() => {
           </button>
         ))}
 
-{/* {combinedKeys.includes(selectedRecommendation) && ( <div>
+        {/* {combinedKeys.includes(selectedRecommendation) && ( <div>
     <button onClick={handleBangumiLogin}>关联 bangumi 账号</button>
   </div>)} */}
 
@@ -148,12 +155,5 @@ useEffect(() => {
     </div>
   );
 }
-
-
-
-
-
-
-
 
 export default RecommendationContainer;

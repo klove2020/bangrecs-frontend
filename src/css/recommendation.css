@@ -5,11 +5,14 @@
 
 }
 
+
 .recommendation-container {
     background-color: #e8e8e8;
     position: relative;
     align-items: center;
-    display: flex;
+    display: flex;      
+    justify-content: space-between;
+    align-items: center;     /* 按钮垂直居中 */
     min-width: 10px;
     border: 1px solid #dfe1e5;
     border-radius: 24px;
@@ -84,13 +87,14 @@
 
 .custom-dropdown ul {
     list-style-type: none;
-    padding: 0;
-    margin: 0;
+    padding: 0px;
+    /* margin: 10px, 10px; */
     position: absolute;  /* 下拉框会显示在按钮的下方 */
-    top: 100%;
-    left: 0;
+    top: 105%;
+    left: 0px;
+    
     border: 1px solid #dfe1e5;
-    border-radius: 4px;
+    /* border-radius: 16px,; */
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
@@ -104,10 +108,16 @@
 
     cursor: pointer;
     background-color: #fafafa;
-    border-radius: 16px;
+    /* border-radius: 16px; */
     transition: background-color 0.3s;
 }
 
 .custom-dropdown li:hover {
     background-color: #f8f9fa;
+}
+
+
+.rounded-bottom-corners {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }

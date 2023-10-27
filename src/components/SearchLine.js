@@ -43,22 +43,31 @@ const SearchLine = () => {
             case "pop":
                 setShowFilterTool(true);
                 setInputvalue('');
+                setIsTagFilterEnabled(false);
                 break;
             case "p":
                 setShowFilterTool(true);
                 setInputvalue(uid);
+                setIsTagFilterEnabled(false);
                 break;
             case "MF":
                 setShowFilterTool(true);
                 setInputvalue(uid);
                 setIsDateFilterEnabled(true);
+                setIsTagFilterEnabled(false);
                 break;
             case "p_dev":
                 setShowFilterTool(true);
                 setInputvalue(uid);
                 break;
+            case "trans":
+                setIsDateFilterEnabled(false);
+                setIsTagFilterEnabled(false);
+                break;
             default:
                 setShowFilterTool(true);
+                setInputvalue(uid);
+                setIsTagFilterEnabled(false);
         }
     }, [selectedRecommendation, setShowFilterTool, setUid, uid, setInputvalue]);
 
@@ -76,7 +85,7 @@ const SearchLine = () => {
             case "trans":
                 return "输入条目id";
             default:
-                return null;
+                return "输入用户id";
         }
     };
 

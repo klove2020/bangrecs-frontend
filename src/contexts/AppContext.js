@@ -1,11 +1,3 @@
-// import React from 'react';
-
-// const AppContext = React.createContext();
-
-// export default AppContext;
-
-
-
 import React, { createContext, useState } from 'react';
 import axios from 'axios';
 
@@ -24,7 +16,10 @@ export const AppProvider = ({ children }) => {
     { key: 's', name: '多标签搜索' },
     
   ];
+
+  const combinedKeys = ['p', 'MF', "pop"];
   
+
   const [resultCount, setResultCount] = useState(10);
 
   const [popdays, setPopdays] = useState(7);
@@ -53,9 +48,6 @@ export const AppProvider = ({ children }) => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const [isRealTimeUpdate, setIsRealTimeUpdate] = useState(false);
-  // const [resultCount, setResultCount] = useState(20);
-
-  // const [inputvalue, setInputvalue] = useState(null);
 
   const redirectUriAuth = "https://bangrecs.net/api/bangumi_oauth/callback"
   // const redirectUriAuth = "http://localhost:3000/bgmrec"
@@ -100,7 +92,6 @@ export const AppProvider = ({ children }) => {
         type: filter !== 'all' ? filter : "all",
         startDate: startDate.toISOString(),
         endDate: endDate.toISOString(),
-        // tags: tags,
         tags: tagGroups,
         topk: resultCount,
         popdays: popdays,
@@ -122,7 +113,6 @@ export const AppProvider = ({ children }) => {
         }
       }
 
-      // const response = await axios.post(`https://bangrecs.net/api/v4/rec/${uid ? uid : '-1'}/`, requestData);
       const response = await search_button()
 
       // const response = await axios.post(`http://localhost:8085/api/v4/rec/${uid ? uid : '-1'}/`, requestData);
@@ -148,6 +138,7 @@ export const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider value={
       {
+        combinedKeys,
         redirectUriAuth,
         dislikeLoading, setDislikeLoading,
         tagGroups, setTagGroups,

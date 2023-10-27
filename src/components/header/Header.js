@@ -46,8 +46,9 @@ const Header = () => {
             } />
             <span>GitHub</span>
         </a>        
-        {/* 在这里添加文档图标和链接 */}
-        <a href={docUrl} target="_blank" rel="noopener noreferrer"  style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
+        
+        {/* 在这里添加文档图标和链接  TODO:还不完善暂时不加 */}
+        {/* <a href={docUrl} target="_blank" rel="noopener noreferrer"  style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
           <FileTextOutlined style={
             {
               fontSize: '24px', 
@@ -58,7 +59,7 @@ const Header = () => {
             }
           } />
           <span>API 文档</span>
-        </a>
+        </a> */}
 
         <Drawer
           title="侧边栏"

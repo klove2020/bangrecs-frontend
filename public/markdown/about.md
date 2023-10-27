@@ -1,6 +1,7 @@
 ## 关于本站
 
-你好，这里是bangrecs, 这个网站致力于提供精确的bangumi番剧推荐, 同时保留了高度灵活的番剧过滤系统，用户可以通过tag和时间等信息缩小推荐候选范围。
+你好，这里是bangrecs, 这个网站致力于提供精确的bangumi番剧推荐, 同时保留高度灵活的番剧过滤系统，用户可以通过tag和时间等信息缩小推荐的候选范围。
+
 
 ## 致谢列表
 * 感谢 bangumi 官方提供的 [相关数据](https://github.com/bangumi/Archive) 和 [api](https://bangumi.github.io/api/)

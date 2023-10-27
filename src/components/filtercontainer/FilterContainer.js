@@ -12,7 +12,6 @@ import 'antd/dist/reset.css'; // 引入样式
 import Switch from 'react-switch';
 import Autosuggest from 'react-autosuggest';
 import axios from 'axios';
-import moment from 'moment';
 
 function TooltipComponent({ text }) {
   return (
@@ -157,7 +156,7 @@ const FilterContainer = () => {
         )}
 
 
-        {["p", "p_dev", "MF"].includes(selectedRecommendation) && (
+        {!["s", "trans", "pop"].includes(selectedRecommendation) && (
           <div className="filter-group">
             <TooltipComponent text="同步当前用户的最新收藏。(对查询速度影响较大)" />
             <label>实时更新: </label>
@@ -187,7 +186,7 @@ const FilterContainer = () => {
           </div>
         )}
 
-        {["pop", "p", "p_dev", "s", "MF"].includes(selectedRecommendation) && (<div className="filter-group">
+        {!["trans"].includes(selectedRecommendation) && (<div className="filter-group">
           <TooltipComponent text="设定候选作品的时间范围, 格式YYYY-M-D。" />
           <label>时间过滤: </label>
           <Switch
@@ -217,7 +216,7 @@ const FilterContainer = () => {
           </div>
         )}
 
-        {["pop", "p", "p_dev", "s", "MF"].includes(selectedRecommendation) && (<div className="filter-group">
+        {!["trans"].includes(selectedRecommendation) && (<div className="filter-group">
           <TooltipComponent text="设定候选作品的标签。(组内关系为且，组间关系为或)" />
           <label>标签过滤: </label>
           <Switch
