@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Drawer, List, ListItem } from 'antd';
+import { GithubOutlined, FileTextOutlined } from '@ant-design/icons'; // 引入GitHub图标
 
 const Header = () => {
   const [visible, setVisible] = useState(false);
@@ -16,8 +17,11 @@ const Header = () => {
     "主页":"/bgmrec",
     '更新说明':"/bgmrec/update",
     '关于网站':"/bgmrec/about",
-    '致谢列表':"/bgmrec/thank",
   }
+
+  const githubUrl = "https://github.com/klove2020/bangrecs-frontend"; // 设置GitHub仓库链接
+
+  const docUrl = "https://bangrecs.net/api/docs/"
 
   return (
     <div className='header-container'>
@@ -28,12 +32,41 @@ const Header = () => {
         <span>
         Bangrecs
         </span>
+        {/* 在这里添加GitHub图标和链接 */}
+        <a href={githubUrl} target="_blank" rel="noopener noreferrer"  style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
+          <GithubOutlined style={
+            { 
+              fontSize: '24px', 
+              color: '#333',
+              marginLeft:"25px",
+              // border: "1px solid #ddd", // 添加边框
+              borderRadius: "4px", // 边框圆角
+              padding: "5px" // 内部填充              
+            }
+            } />
+            <span>GitHub</span>
+        </a>        
+        {/* 在这里添加文档图标和链接 */}
+        <a href={docUrl} target="_blank" rel="noopener noreferrer"  style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
+          <FileTextOutlined style={
+            {
+              fontSize: '24px', 
+              color: '#333',
+              marginLeft: "25px",
+              borderRadius: "4px",
+              padding: "5px"
+            }
+          } />
+          <span>API 文档</span>
+        </a>
+
         <Drawer
           title="侧边栏"
           placement="left"
           closable={true}
           onClose={onClose}
           visible={visible}
+          width={280} 
         >
           <List
             dataSource={Object.keys(page2url)}

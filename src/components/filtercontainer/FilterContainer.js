@@ -134,45 +134,6 @@ const FilterContainer = () => {
     setTagGroups(newTagGroups);
   };
 
-
-
-
-  
-
-  const parseDate = (input) => {
-      let formattedDate = "";
-  
-      // 去除可能的分隔符
-      const cleanedInput = String(input).replace(/[-.]/g, '');
-  
-      console.log(cleanedInput);
-      switch (cleanedInput.length) {
-          case 2:
-              if (parseInt(cleanedInput) <= 30) {
-                  formattedDate = `20${cleanedInput}0101`;
-              } else {
-                  formattedDate = `19${cleanedInput}0101`;
-              }
-              break;
-          case 4:
-              formattedDate = `${cleanedInput}01`;
-              break;
-          case 5:
-              formattedDate = `${cleanedInput.slice(0, 4)}0${cleanedInput.slice(4)}01`;
-              break;
-          case 6:
-              formattedDate = `${cleanedInput}01`;
-              break;
-          case 8:
-              formattedDate = cleanedInput;
-              break;
-          default:
-              throw new Error("Invalid date format");
-      }
-  
-      return moment(formattedDate, "YYYYMMDD");
-  }
-  
   
 
 

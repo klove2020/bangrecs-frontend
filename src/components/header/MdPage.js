@@ -47,7 +47,7 @@ export const UpdatePage = () => {
     return <Md2Page filePath={filePath} />;
 };
 
-export const ThankPage = () => {
-    const filePath = '/bgmrec/markdown/thank.md';
-    return <Md2Page filePath={filePath} />;
-};
+// export const ThankPage = () => {
+//     const filePath = '/bgmrec/markdown/thank.md';
+//     return <Md2Page filePath={filePath} />;
+// };

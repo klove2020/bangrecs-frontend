@@ -12,6 +12,19 @@ import axios from 'axios';
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
+
+  const recommendations = [
+    { key: 'p', name: '推荐作品' },
+    // { key: 'p_dev', name: '个性化推荐(dev)' },
+    { key: 'MF', name: '推荐作品(MF)' },
+    { key: 'pop', name: '流行作品' },
+    
+    // { key: 'cp', name: '对话式推荐' },    
+    { key: 'trans', name: '条目转移' },
+    { key: 's', name: '多标签搜索' },
+    
+  ];
+  
   const [resultCount, setResultCount] = useState(10);
 
   const [popdays, setPopdays] = useState(7);
@@ -75,17 +88,6 @@ export const AppProvider = ({ children }) => {
     }),
   };
 
-  const recommendations = [
-    { key: 'p', name: '推荐作品' },
-    // { key: 'p_dev', name: '个性化推荐(dev)' },
-    { key: 'MF', name: '推荐作品(MF)' },
-    { key: 'pop', name: '流行作品' },
-    
-    // { key: 'cp', name: '对话式推荐' },    
-    { key: 'trans', name: '条目转移' },
-    { key: 's', name: '多标签搜索' },
-    
-  ];
 
 
   const fetchData = async () => {
@@ -109,18 +111,14 @@ export const AppProvider = ({ children }) => {
 
       const search_button = () => {
         switch (selectedRecommendation) {
-          case "p":
-            return axios.post(`https://bangrecs.net/api/v4/rec/${uid ? uid : '-1'}/`, requestData);
-          case "MF":
-            return axios.post(`https://bangrecs.net/api/v4/rec/${uid ? uid : '-1'}/`, requestData);            
           case "p_dev":
             return axios.post(`https://bangrecs.net/api/v4/rec_dev/${uid ? uid : '-1'}/`, requestData);
           case "pop":
-            return axios.post(`https://bangrecs.net/api/v4/rec/${uid ? uid : '-1'}/`, requestData);
-          case "s":
-            return axios.post(`https://bangrecs.net/api/v4/rec/${uid ? uid : '-1'}/`, requestData);
+            return axios.post(`https://bangrecs.net/api/v4/rec/${uid ? uid : '-1'}/`, requestData);          
           case "trans":
             return axios.post(`https://bangrecs.net/api/v4/trans/${uid ? uid : '-1'}/`, requestData);
+          default:
+            return axios.post(`https://bangrecs.net/api/v4/rec/${uid ? uid : '-1'}/`, requestData);
         }
       }
 
