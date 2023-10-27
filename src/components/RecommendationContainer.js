@@ -5,11 +5,7 @@ import AppContext from '../contexts/AppContext';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
-import { Select } from 'antd';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-
-
-const { Option } = Select;
 
 
 function TooltipComponent({ text }) {
@@ -58,44 +54,9 @@ const RecommendationContainer = () => {
 
 
 
-  //   return (
-  //     <div className='rec'>
-
-  //       <div className="recommendation-container">
-
-  //         {recommendations.map((rec) => (
-  //           <button
-  //             key={rec.key}
-  //             onClick={() => {
-  //               setRecommendation(rec.key);
-  //               setSelectedRecommendation(rec.key);
-  //             }}
-  //             style={{ backgroundColor: selectedRecommendation === rec.key ? '#f8f9fa' : '#e8e8e8' }}
-  //           >
-  //             <_Tooltip x={rec.key} />
-  //             {rec.name}
-  //           </button>
-  //         ))}
-
-  //       </div>
-  //     </div>
-
-  //   );
-  // }
-  const [showDropdown, setShowDropdown] = useState(false);
   // const combinedKeys = ['p', 'MF', 'trans'];
   const combinedKeys = ['p', 'MF'];
 
-  const handleDropdownButtonClick = () => {
-    setShowDropdown(!showDropdown);
-  };
-
-  const handleDropdownChange = (event) => {
-    const selectedKey = event.target.value;
-    setRecommendation(selectedKey);
-    setSelectedRecommendation(selectedKey);
-    setShowDropdown(false);
-  };
 
   const [showOptions, setShowOptions] = useState(false);
 
@@ -127,10 +88,6 @@ useEffect(() => {
 }, []);
 
   
-
-  const selectedRec = recommendations.find(rec => combinedKeys.includes(rec.key) && rec.key === selectedRecommendation);
-  const combinedRecommendations = recommendations.filter(rec => combinedKeys.includes(rec.key));
-  const otherRecommendations = recommendations.filter(rec => !combinedKeys.includes(rec.key));
 
   return (
     <div className='rec'>
