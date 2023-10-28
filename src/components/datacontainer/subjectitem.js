@@ -74,7 +74,7 @@ const _date_process_func = (date) => {
 
 
 const SubejctItem = ({ item, domain }) => {
-    const { selectedRecommendation, uid, fetchData, dislikeLoading, setDislikeLoading} = useContext(AppContext);
+    const { selectedRecommendation, uid, fetchData, dislikeLoading, setDislikeLoading } = useContext(AppContext);
 
 
     const handleDislike = () => {
@@ -84,12 +84,12 @@ const SubejctItem = ({ item, domain }) => {
             "uid": uid,
             "sid": item.sid,
         };
-    
+
         axios.post(url, data_)
             .then(() => {
                 fetchData().finally(() => {
                     setDislikeLoading(false);  // 设置 isLoading 为 false，表示请求完成
-                });  
+                });
             })
             .catch((error) => {
                 console.error(error);  // 修改 console.error 的调用方式
@@ -97,9 +97,9 @@ const SubejctItem = ({ item, domain }) => {
             // .finally(() => {
             //     setDislikeLoading(false);  // 设置 isLoading 为 false，表示请求完成
             // })
-            ;    
+            ;
     };
-    
+
 
     const ref = useRef(null);
     const [, refDrop] = useDrop({
@@ -128,55 +128,50 @@ const SubejctItem = ({ item, domain }) => {
 
     return (
         <div
-    ref={ref}
-    draggable
-    onDragEnd={handleDragEnd}
-    key={item.sid}
-    className="item"
-    onClick={() => {
-        window.location.href = `https://${domain}/subject/${item.sid}`;
-    }}
-    style={{
-        position: 'relative',  // 添加这一行来进行子元素的绝对定位
-        background: getColorByType(item.subject_type)
-    }}
->
-    <img src={item.image_medium} alt={item.name} />
-    <div className="item-info">
-        <h3>{item.name_cn ? item.name_cn : item.name}</h3>
-        <h4 id='score'>{item.trans_score ? item.trans_score.toFixed(2) : item.pop ? item.pop : 'N/A'}</h4>
-        <h5>{_date_process_func(item.date)}, &nbsp; 排名:{item.rank !== 0 ? item.rank : 'N/A'},&nbsp; 评分:{item.score}{<Rating score={item.score} />}</h5>
-        <p>{item.summary ? item.summary : ""}</p>
-    </div>
-    <h4 id='stype'>{getTypeExplanation(item.subject_type)}</h4>
-    
-    {/* 添加不喜欢的按钮 */}
-    {selectedRecommendation == "p" &&
-    <button 
-        style={{
-            position: 'absolute',
-            bottom: '10px',
-            right: '10px',
-            background: getColorByType(item.subject_type)
-            // margintop:"10px",
-        }}
-        onClick={(e) => {
-            e.stopPropagation();  // 阻止冒泡，以避免触发div的onClick事件
-            handleDislike(item.sid);
-        }}
-    >
-        换一个
-    </button>}
-</div>
+            ref={ref}
+            draggable
+            onDragEnd={handleDragEnd}
+            key={item.sid}
+            className="item"
+            onClick={() => {
+                window.location.href = `https://${domain}/subject/${item.sid}`;
+            }}
+            style={{
+                position: 'relative',  // 添加这一行来进行子元素的绝对定位
+                background: getColorByType(item.subject_type)
+            }}
+        >
+            <img src={item.image_medium} alt={item.name} />
+            <div className="item-info">
+                <h3>{item.name_cn ? item.name_cn : item.name}</h3>
+                <h4 id='score'>{item.trans_score ? item.trans_score.toFixed(2) : item.pop ? item.pop : 'N/A'}</h4>
+                <h5>{_date_process_func(item.date)}, &nbsp; 排名:{item.rank !== 0 ? item.rank : 'N/A'},&nbsp; 评分:{item.score}{<Rating score={item.score} />}</h5>
+                <p>{item.summary ? item.summary : ""}</p>
+            </div>
+            <h4 id='stype'>{getTypeExplanation(item.subject_type)}</h4>
+
+            {/* 添加不喜欢的按钮 */}
+            {selectedRecommendation == "p" &&
+                <button
+                    style={{
+                        position: 'absolute',
+                        bottom: '10px',
+                        right: '10px',
+                        background: getColorByType(item.subject_type)
+                        // margintop:"10px",
+                    }}
+                    onClick={(e) => {
+                        e.stopPropagation();  // 阻止冒泡，以避免触发div的onClick事件
+                        handleDislike(item.sid);
+                    }}
+                >
+                    换一个
+                </button>}
+        </div>
 
 
-        );
+    );
 };
 
 
-
-
-
-// export default {DraggableItem,DraggableItem2};
-// export { DraggableItem, DraggableItem2 };
 export default SubejctItem;

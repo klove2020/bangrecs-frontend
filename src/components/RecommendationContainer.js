@@ -22,16 +22,18 @@ function TooltipComponent({ text }) {
 function _Tooltip({ x }) {
   switch (x) {
     case "MF":
-      return <TooltipComponent text="候选集为评分数超过1000的作品, 基于MF模型(这是一个保守的模型，建议开启时间过滤，否则大多是老作品)" />;
+      return <TooltipComponent text="传统模型MF(这是一个保守的模型，倾向高分作品) 默认过滤05年以前的作品, 候选集条目评分数量超过1000" />;
     case "p":
-      return <TooltipComponent text="根据你最近看过/玩过的作品进行推荐, 基于条目转移分数" />;
+      return <TooltipComponent text="根据你最近看过/玩过的作品进行推荐, 基于条目转移分数, 候选集是几乎所有带有rank的作品" />;
     case "trans":
       return <TooltipComponent text="寻找从目标条目跳转到下一条目最多的条目, 基于条目转移分数" />;
     case "pop":
       return <TooltipComponent text="返回最近一段时间的热门作品, 随机采样10000个活跃用户计算" />;
     case "s":
-      return <TooltipComponent text="标记该标签的人数要>=10,被该标签标记过的作品要>=10" />;
-
+      return <TooltipComponent text="标记该标签的人数要>=10, 被该标签标记过的作品要>=10" />;
+    case "sarsrec":
+      return <TooltipComponent text="模型是SARSRec, 候选集条目评分数量超过500" />;
+  
     default:
       return null;
   }
@@ -110,7 +112,7 @@ const RecommendationContainer = () => {
               border: isButtonClicked ? '1px solid #dfe1e5' : 'none',
             }}
           >
-            <_Tooltip x={selectedRecommendation} />
+            <_Tooltip x={model} />
             {/* {selectedRec ? selectedRec.name : recommendations.find(rec => ["p"].includes(model)).name} */}
             {recommendations.find(rec => rec.key === model).name}
             {/* 下拉图标 */}

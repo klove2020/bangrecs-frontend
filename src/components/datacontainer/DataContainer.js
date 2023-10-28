@@ -4,8 +4,7 @@ import AppContext from '../../contexts/AppContext';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { TouchBackend } from 'react-dnd-touch-backend';
-// import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-// 使用相对路径导入
+
 import SubejctItem from './subjectitem';
 
 import { Select } from 'antd';

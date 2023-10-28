@@ -13,9 +13,9 @@ const SearchLine = () => {
         setData([]);
         fetchData().then( () =>{
             setIsRealTimeUpdate(false);
-            setStartDate(new Date(1900, 0, 1));
-            setEndDate(new Date());
-            setIsDateFilterEnabled(false);    
+            // setStartDate(new Date(1900, 0, 1));
+            // setEndDate(new Date());
+            // setIsDateFilterEnabled(false);    
     });
     };
 
@@ -55,6 +55,7 @@ const SearchLine = () => {
                 setInputvalue(uid);
                 setIsDateFilterEnabled(true);
                 setIsTagFilterEnabled(false);
+                setStartDate(new Date(2005, 0, 1));
                 break;
             case "p_dev":
                 setShowFilterTool(true);
@@ -81,7 +82,7 @@ const SearchLine = () => {
             case "pop":
                 return "这里禁止输入"; // 你可以根据需要替换
             case "p":
-                return "关联bangumi账号";
+                return "输入用户id";
             case "trans":
                 return "输入条目id";
             default:
