@@ -57,6 +57,13 @@ const SearchLine = () => {
                 setIsTagFilterEnabled(false);
                 setStartDate(new Date(2005, 0, 1));
                 break;
+            case "sarsrec":
+                setShowFilterTool(true);
+                setInputvalue(uid);
+                setIsDateFilterEnabled(true);
+                setStartDate(new Date(2005, 0, 1));
+                setEndDate(new Date(2021, 0, 1));
+                break;
             case "p_dev":
                 setShowFilterTool(true);
                 setInputvalue(uid);

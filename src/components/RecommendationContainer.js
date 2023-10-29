@@ -32,7 +32,7 @@ function _Tooltip({ x }) {
     case "s":
       return <TooltipComponent text="标记该标签的人数要>=10, 被该标签标记过的作品要>=10" />;
     case "sarsrec":
-      return <TooltipComponent text="模型是SARSRec, 候选集条目评分数量超过500" />;
+      return <TooltipComponent text="模型是SARSRec, 默认时间区间05年-20年, 候选集条目评分数量超过500" />;
   
     default:
       return null;
