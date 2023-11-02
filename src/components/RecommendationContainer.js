@@ -18,7 +18,6 @@ function TooltipComponent({ text }) {
 }
 
 
-
 function _Tooltip({ x }) {
   switch (x) {
     case "MF":
@@ -33,7 +32,9 @@ function _Tooltip({ x }) {
       return <TooltipComponent text="标记该标签的人数要>=10, 被该标签标记过的作品要>=10" />;
     case "sarsrec":
       return <TooltipComponent text="模型是SARSRec, 默认时间区间05年-20年, 候选集条目评分数量超过500" />;
-  
+    case "bsr":
+      return <TooltipComponent text="模型是BSR, Attention机制的变体" />;
+    
     default:
       return null;
   }
