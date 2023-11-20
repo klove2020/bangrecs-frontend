@@ -28,7 +28,7 @@ function App() {
 }
 
 const AppContent = () => {
-  const {redirectUriAuth, uid, setUid,data, setData, filter, recommendation, selectedRecommendation, domain,startDate,endDate } = useContext(AppContext);
+  const {redirectUriAuth, relationList, setRelationList, uid, setUid,data, setData, filter, recommendation, selectedRecommendation, domain,startDate,endDate } = useContext(AppContext);
 
   
   useEffect(() => {
@@ -72,18 +72,25 @@ const AppContent = () => {
 
     const storeUid = localStorage.getItem(`uid:${selectedRecommendation}`);
     setUid(storeUid ? storeUid:"")
+
+
+    const storerelationList = localStorage.getItem(`relationList:${selectedRecommendation}`);
+    setRelationList(storerelationList? JSON.parse(storerelationList):[])
+    
   }, [selectedRecommendation]);
 
   useEffect(() => {
     localStorage.setItem(`uid:${selectedRecommendation}`, uid);
     localStorage.setItem(`data:${selectedRecommendation}`, JSON.stringify(data));
+    localStorage.setItem(`relationList:${selectedRecommendation}`, JSON.stringify(relationList));
+    
     localStorage.setItem('filter', filter);
     localStorage.setItem('recommendation', recommendation);
     localStorage.setItem('selectedRecommendation', selectedRecommendation);
     localStorage.setItem('domain', domain);
     localStorage.setItem('startDate', startDate);
     localStorage.setItem('endDate', endDate);    
-  }, [uid, data, filter, recommendation, selectedRecommendation, domain, startDate, endDate]);
+  }, [uid, data, filter, recommendation, selectedRecommendation, domain, startDate, endDate, relationList]);
 
 return (
   <div>

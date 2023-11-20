@@ -258,7 +258,6 @@ const SubjectItemContent = ({ item, domain, hovered, setHovered }) => {
   
   const SubjectItem = ({ item, domain, otherItems }) => {
     const { selectedRecommendation, uid, fetchData, dislikeLoading, setDislikeLoading } = useContext(AppContext);
-    // const [hovered, setHovered] = useState(null);
     
     const [hovered, setHovered] = useState(item?.sid);
 
@@ -306,6 +305,13 @@ const SubjectItemContent = ({ item, domain, hovered, setHovered }) => {
 
 const GroupedSubjectItems = ({ items, relationList, domain }) => {
     // 创建分组
+    console.log("gg");
+    
+    console.log(items);
+    console.log(relationList[0]);
+
+    console.log("gg2");
+
     const groups = relationList.map(group => ({
         representative: items.find(item => item.sid === group[0]),
         others: group.slice(1).map(sid => items.find(item => item.sid === sid)).filter(item => item !== undefined)

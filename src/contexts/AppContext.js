@@ -38,8 +38,8 @@ export const AppProvider = ({ children }) => {
   const initEndDate = localStorage.getItem('endDate') ? new Date(localStorage.getItem('endDate')) : new Date();
 
   const [relationList, setRelationList] = useState(
-    // JSON.parse(localStorage.getItem('relationList')) || []
-    []
+    JSON.parse(localStorage.getItem(`relationList:${selectedRecommendation}`)) || []
+    // []
   );
   
 

@@ -19,6 +19,9 @@ const ITEMS_PER_PAGE = 10;
 const DataContainer = () => {
   const { dislikeLoading, data, currentPage, setCurrentPage, domain, setDomain, relationList } = useContext(AppContext);
 
+  // if (relationList === undefined){
+  //   return null;
+  // }
 
   const totalPages = Math.ceil(relationList.length / ITEMS_PER_PAGE);
 
@@ -51,7 +54,7 @@ const DataContainer = () => {
 
     // currentData = data.slice(startIndex, endIndex);
 
-    // console.log("test2")
+    console.log("currentData")
     console.log(currentData)
 
   }
@@ -91,6 +94,7 @@ const DataContainer = () => {
         // currentData.map(item => (
         //   <SubejctItem key={item.sid} item={item} domain={domain} />
         // ))
+        // <GroupedSubjectItems items={data} relationList={relationList} domain={domain} />
         <GroupedSubjectItems items={currentData} relationList={relationList} domain={domain} />
       )}
       <div className="pagination">
