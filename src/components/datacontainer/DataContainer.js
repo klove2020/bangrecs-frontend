@@ -17,13 +17,26 @@ const ITEMS_PER_PAGE = 10;
 
 
 const DataContainer = () => {
-  const { dislikeLoading, data, currentPage, setCurrentPage, domain, setDomain, relationList } = useContext(AppContext);
+  const { recommendation, dislikeLoading, data, currentPage, setCurrentPage, domain, setDomain, relationList } = useContext(AppContext);
 
   // if (relationList === undefined){
   //   return null;
   // }
 
-  const totalPages = Math.ceil(relationList.length / ITEMS_PER_PAGE);
+  console.log("test111")
+  console.log(relationList)
+  console.log("test222")
+
+  let totalPages = 1;
+  // if
+  //   (recommendation === "trans") {
+  //   totalPages = Math.ceil(data.length / ITEMS_PER_PAGE);
+  // }
+  // else {
+  //   totalPages = Math.ceil(relationList.length / ITEMS_PER_PAGE);
+  // }
+
+  totalPages = Math.ceil(relationList.length / ITEMS_PER_PAGE);
 
   const handleNextPage = () => {
     if (currentPage < totalPages - 1) {
@@ -42,75 +55,84 @@ const DataContainer = () => {
   let currentData = [];
 
   if (Array.isArray(data) && data.length > 0) {
-    
-    const current_relation_list = relationList.slice(startIndex, endIndex);
 
-    // console.log("test")
-    // console.log(current_relation_list)
-    
-    currentData = current_relation_list.map(sidArray => 
-        sidArray.map(sid => data.find(item => item.sid === sid))
+
+
+    // if
+    //   (recommendation === "trans") {
+    //   currentData = data.slice(startIndex, endIndex);
+    // }
+    // else {
+    //   const current_relation_list = relationList.slice(startIndex, endIndex);
+    //   currentData = current_relation_list.map(sidArray =>
+    //     sidArray.map(sid => data.find(item => item.sid === sid))
+    //   ).flat();
+    // }
+
+    const current_relation_list = relationList.slice(startIndex, endIndex);
+    currentData = current_relation_list.map(sidArray =>
+      sidArray.map(sid => data.find(item => item.sid === sid))
     ).flat();
 
-    // currentData = data.slice(startIndex, endIndex);
 
     console.log("currentData")
     console.log(currentData)
 
   }
-  
 
-  return dislikeLoading? (
+
+  return dislikeLoading ? (
     <div style={{
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       height: '100vh'  // 你可以根据需要调整这个值
-  }}>
+    }}>
       <div className="loading-icon"></div>
-  </div>
-  ) : (
-    
-    (
-    <DndProvider backend={TouchBackend} options={
-      { delayTouchStart: 300,
-      }}>
-    <div className="container">
-      <Select
-        value={domain}
-        style={{ width: 150, right: 0 }}
-        onChange={(value) => setDomain(value)}
-        defaultValue={"bgm.tv"}
-      >
-        <Option value="bgm.tv">bgm.tv</Option>
-        <Option value="bangumi.tv">bangumi.tv</Option>
-        <Option value="chii.in">chii.in</Option>
-      </Select>
-      {/* 增加域名选择 */}
-      {data.message ? (
-        <div className="error-message">{data.message}</div>
-      ) : (
-
-        // currentData.map(item => (
-        //   <SubejctItem key={item.sid} item={item} domain={domain} />
-        // ))
-        // <GroupedSubjectItems items={data} relationList={relationList} domain={domain} />
-        <GroupedSubjectItems items={currentData} relationList={relationList} domain={domain} />
-      )}
-      <div className="pagination">
-        <button onClick={handlePreviousPage} disabled={currentPage === 0}>
-          Previous
-        </button>
-        <span>
-          Page {currentPage + 1} of {totalPages}
-        </span>
-        <button onClick={handleNextPage} disabled={currentPage === totalPages - 1}>
-          Next
-        </button>
-      </div>
     </div>
-    </DndProvider>))
-  ;
+  ) : (
+
+    (
+      <DndProvider backend={TouchBackend} options={
+        {
+          delayTouchStart: 300,
+        }}>
+        <div className="container">
+          <Select
+            value={domain}
+            style={{ width: 150, right: 0 }}
+            onChange={(value) => setDomain(value)}
+            defaultValue={"bgm.tv"}
+          >
+            <Option value="bgm.tv">bgm.tv</Option>
+            <Option value="bangumi.tv">bangumi.tv</Option>
+            <Option value="chii.in">chii.in</Option>
+          </Select>
+          {/* 增加域名选择 */}
+          {data.message ? (
+            <div className="error-message">{data.message}</div>
+          ) : (
+
+            // currentData.map(item => (
+            //   <SubejctItem key={item.sid} item={item} domain={domain} />
+            // ))
+            // <GroupedSubjectItems items={data} relationList={relationList} domain={domain} />
+            <GroupedSubjectItems items={currentData} relationList={relationList} domain={domain} />
+          )}
+          <div className="pagination">
+            <button onClick={handlePreviousPage} disabled={currentPage === 0}>
+              Previous
+            </button>
+            <span>
+              Page {currentPage + 1} of {totalPages}
+            </span>
+            <button onClick={handleNextPage} disabled={currentPage === totalPages - 1}>
+              Next
+            </button>
+          </div>
+        </div>
+      </DndProvider>))
+    ;
 };
 
 export default DataContainer;

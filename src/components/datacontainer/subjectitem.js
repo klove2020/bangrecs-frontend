@@ -196,7 +196,7 @@ const SubjectItemContent = ({ item, domain, hovered, setHovered }) => {
       // 设置延时
       hoverTimer.current = setTimeout(() => {
         setHovered(item.sid);
-      }, 800);
+      }, 600);
     };
   
     const handleMouseLeave = () => {
