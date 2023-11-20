@@ -1,41 +1,29 @@
-/* .item {
+.item {
+    border: 1px solid; 
     display: flex;
-    align-items: center;
-    width: 100%;
+    align-items: center; 
+    width: 80%;
+    /* width: 100%; */
     max-width: 800px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px;
+    padding: 15px;
+    /* padding-bottom: 40px; */
     border-radius: 8px;
     cursor: pointer;
+    /* cursor: grab; */
+    margin-bottom: 0px; /* 添加间距 */
+    margin-right: 0px;
+    margin-left: auto;
+    margin-top: 0px;
+    position: relative; 
+    /* margin-bottom: 20px; 添加间距 */
+    text-align: left;
+
+    transition: width 0.3s ease, padding-bottom 0.3s ease, margin-bottom 0.3s ease; /* 应用过渡效果 */
+
 }
 
-
-.item img {
-    width: 150px;
-    height: auto;
-    margin-right: 20px;
-    border-radius: 8px;
-}
-
-.item-info h3 {
-    margin: 0;
-    margin-bottom: 10px;
-    font-size: 1.5em;
-}
-
-.item-info p {
-    text-decoration: none;
-    margin: 0;
-    color: #666;
-    font-size: 0.9em;
-    max-width: 600px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-} */
-.item {
+.item.hovered {
     border: 1px solid; 
     display: flex;
     align-items: center; /* 对齐到顶部 */
@@ -50,8 +38,10 @@
     margin-bottom: 20px; /* 添加间距 */
     position: relative; 
     /* margin-bottom: 20px; 添加间距 */
-}
 
+    /* transform: scale(1);  */
+    margin-top: 0; 
+}
   
 .item:active {
     cursor: grabbing;
@@ -65,17 +55,28 @@
   }
   
 
-.item img {
+.item-image{
     width: 150px; /* 调整大小 */
     height: auto;
     margin-right: 20px;
     border-radius: 8px;
     margin-top: 8px;
     margin-left: 4px;
-
     padding-top: 10px;
+
+    /* margin-right: 0; */
+    margin-bottom: 20px;
 }
 
+.item-image-small{
+    width: 50px; /* 调整大小 */
+    /* height: auto; */
+    margin-right: 6px;
+    border-radius: 2.5px;
+    margin-top: 8px;
+    margin-left: 4px;
+    padding-top: 10px;
+}
 .item-info {
     /* position: relative; */
     align-items: center;
@@ -129,8 +130,6 @@
     max-width: 600px;
     min-width: 100%;
     min-height: 1em;
-    /* height: 600px; */
-    /* width: 600px; */
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;

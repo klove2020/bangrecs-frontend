@@ -13,6 +13,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 
 
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'; // 导入向下的图标
+
 function getTypeExplanation(subject_type) {
     switch (subject_type) {
         case 1:
@@ -48,6 +50,12 @@ function getColorByType(subject_type) {
 }
 
 
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // 月份是从0开始的
+    return `${year}-${month}`;
+}
 const Rating = ({ score }) => {
     const fullStars = Math.floor(score);
     const halfStars = score % 1 >= 0.5 ? 1 : 0;
@@ -73,105 +81,222 @@ const _date_process_func = (date) => {
 }
 
 
-const SubejctItem = ({ item, domain }) => {
-    const { selectedRecommendation, uid, fetchData, dislikeLoading, setDislikeLoading } = useContext(AppContext);
 
 
-    const handleDislike = () => {
-        setDislikeLoading(true)
-        const url = "https://bangrecs.net/api/dislike";
-        const data_ = {
-            "uid": uid,
-            "sid": item.sid,
-        };
-
-        axios.post(url, data_)
-            .then(() => {
-                fetchData().finally(() => {
-                    setDislikeLoading(false);  // 设置 isLoading 为 false，表示请求完成
-                });
-            })
-            .catch((error) => {
-                console.error(error);  // 修改 console.error 的调用方式
-            })
-            // .finally(() => {
-            //     setDislikeLoading(false);  // 设置 isLoading 为 false，表示请求完成
-            // })
-            ;
-    };
 
 
-    const ref = useRef(null);
-    const [, refDrop] = useDrop({
-        accept: "ITEM",
-    });
+// const SubejctItem = ({ item, domain }) => {
+//     const { selectedRecommendation, uid, fetchData, dislikeLoading, setDislikeLoading } = useContext(AppContext);
 
-    const [, refDrag] = useDrag({
-        type: "ITEM",
-        item: { item },
-    });
 
-    // 可以使用touch和mouse拖动
-    refDrop(ref);
-    refDrag(ref);
+//     const handleDislike = () => {
+//         setDislikeLoading(true)
+//         const url = "https://bangrecs.net/api/dislike";
+//         const data_ = {
+//             "uid": uid,
+//             "sid": item.sid,
+//         };
 
-    const handleDragEnd = (event) => {
-        const rect = ref.current.getBoundingClientRect();
-        if (event.clientX > window.innerWidth - 100) {
-            console.log("Dropped on the right");
-            // Trigger your function
-        } else if (event.clientX < 100) {
-            console.log("Dropped on the left");
-            // Trigger your function
-        }
-    };
+//         axios.post(url, data_)
+//             .then(() => {
+//                 fetchData().finally(() => {
+//                     setDislikeLoading(false);  // 设置 isLoading 为 false，表示请求完成
+//                 });
+//             })
+//             .catch((error) => {
+//                 console.error(error);  // 修改 console.error 的调用方式
+//             })
+//             // .finally(() => {
+//             //     setDislikeLoading(false);  // 设置 isLoading 为 false，表示请求完成
+//             // })
+//             ;
+//     };
 
-    return (
+
+//     const ref = useRef(null);
+//     const [, refDrop] = useDrop({
+//         accept: "ITEM",
+//     });
+
+//     const [, refDrag] = useDrag({
+//         type: "ITEM",
+//         item: { item },
+//     });
+
+//     // 可以使用touch和mouse拖动
+//     refDrop(ref);
+//     refDrag(ref);
+
+//     const handleDragEnd = (event) => {
+//         const rect = ref.current.getBoundingClientRect();
+//         if (event.clientX > window.innerWidth - 100) {
+//             console.log("Dropped on the right");
+//             // Trigger your function
+//         } else if (event.clientX < 100) {
+//             console.log("Dropped on the left");
+//             // Trigger your function
+//         }
+//     };
+
+//     return (
+//         <div
+//             ref={ref}
+//             draggable
+//             onDragEnd={handleDragEnd}
+//             key={item.sid}
+//             className="item"
+//             onClick={() => {
+//                 window.location.href = `https://${domain}/subject/${item.sid}`;
+//             }}
+//             style={{
+//                 position: 'relative',  // 添加这一行来进行子元素的绝对定位
+//                 background: getColorByType(item.subject_type)
+//             }}
+//         >
+//             <img src={item.image_medium} alt={item.name} />
+//             <div className="item-info">
+//                 <h3>{item.name_cn ? item.name_cn : item.name}</h3>
+//                 <h4 id='score'>{item.trans_score ? item.trans_score.toFixed(2) : item.pop ? item.pop : 'N/A'}</h4>
+//                 <h5>{_date_process_func(item.date)}, &nbsp; 排名:{item.rank !== 0 ? item.rank : 'N/A'},&nbsp; 评分:{item.score}{<Rating score={item.score} />}</h5>
+//                 <p>{item.summary ? item.summary : ""}</p>
+//             </div>
+//             <h4 id='stype'>{getTypeExplanation(item.subject_type)}</h4>
+
+//             {/* 添加不喜欢的按钮 */}
+//             {/* {selectedRecommendation == "p" &&
+//                 <button
+//                     style={{
+//                         position: 'absolute',
+//                         bottom: '10px',
+//                         right: '10px',
+//                         background: getColorByType(item.subject_type)
+//                         // margintop:"10px",
+//                     }}
+//                     onClick={(e) => {
+//                         e.stopPropagation();  // 阻止冒泡，以避免触发div的onClick事件
+//                         handleDislike(item.sid);
+//                     }}
+//                 >
+//                     换一个
+//                 </button>} */}
+//         </div>
+
+
+//     );
+// };
+
+
+
+const SubjectItemContent = ({ item, domain, hovered, setHovered }) => {
+    const isHovered = hovered === item.sid;
+    return isHovered?(
+      <div
+        key={item.sid}
+        onMouseEnter={() => setHovered(item.sid)}
+        // onMouseLeave={() => setHovered(null)}
+        className={`item ${hovered === item.sid ? 'hovered' : ''}`}
+        onClick={() => window.location.href = `https://${domain}/subject/${item.sid}`}
+        style={{
+          position: 'relative',
+          background: getColorByType(item.subject_type),
+          margin: 0,  
+        
+        }}
+      >
+        <img src={item.image_medium} alt={item.name} className="item-image" />
+        <div className="item-info">
+          <h3>{item.name_cn || item.name}</h3>
+          <h4 id="score">{item.trans_score?.toFixed(2) || item.pop || 'N/A'}</h4>
+            <h4 id='score'>{item.trans_score ? item.trans_score.toFixed(2) : item.pop ? item.pop : 'N/A'}</h4>
+            <h5>{_date_process_func(item.date)}, &nbsp; 
+          {item.rank && `排名: ${item.rank}`}, 评分: {<Rating score={item.score}></Rating>}</h5>
+          <p>{item.summary}</p>
+        </div>
+        <h4 id="stype">{getTypeExplanation(item.subject_type)}</h4>
+      </div>
+    ): (
+        // 简略版本
         <div
-            ref={ref}
-            draggable
-            onDragEnd={handleDragEnd}
             key={item.sid}
+            onMouseEnter={() => setHovered(item.sid)}
             className="item"
-            onClick={() => {
-                window.location.href = `https://${domain}/subject/${item.sid}`;
-            }}
+            onClick={() => setHovered(item.sid)} // for 移动设备
             style={{
-                position: 'relative',  // 添加这一行来进行子元素的绝对定位
-                background: getColorByType(item.subject_type)
+                position: 'relative',
+                background: getColorByType(item.subject_type),
+                opacity: 0.7,
+            
             }}
         >
-            <img src={item.image_medium} alt={item.name} />
-            <div className="item-info">
-                <h3>{item.name_cn ? item.name_cn : item.name}</h3>
-                <h4 id='score'>{item.trans_score ? item.trans_score.toFixed(2) : item.pop ? item.pop : 'N/A'}</h4>
-                <h5>{_date_process_func(item.date)}, &nbsp; 排名:{item.rank !== 0 ? item.rank : 'N/A'},&nbsp; 评分:{item.score}{<Rating score={item.score} />}</h5>
-                <p>{item.summary ? item.summary : ""}</p>
+            {/* <img src={item.image_medium} alt={item.name} className="item-image-small" /> */}
+            <div className="item-info-small">
+                <h4 style={{fontSize: "9px"}}>{item.name_cn || item.name}({formatDate(item.date)})</h4>
+                
+                {/* <h4 id="score-small">{item.trans_score?.toFixed(2) || item.pop || 'N/A'}</h4> */}
             </div>
-            <h4 id='stype'>{getTypeExplanation(item.subject_type)}</h4>
-
-            {/* 添加不喜欢的按钮 */}
-            {selectedRecommendation == "p" &&
-                <button
-                    style={{
-                        position: 'absolute',
-                        bottom: '10px',
-                        right: '10px',
-                        background: getColorByType(item.subject_type)
-                        // margintop:"10px",
-                    }}
-                    onClick={(e) => {
-                        e.stopPropagation();  // 阻止冒泡，以避免触发div的onClick事件
-                        handleDislike(item.sid);
-                    }}
-                >
-                    换一个
-                </button>}
+            <h4 id="stype" style={{fontSize: "9px"}}>{getTypeExplanation(item.subject_type)}</h4>
         </div>
+    );
+  };
+  
+  const SubjectItem = ({ item, domain, otherItems }) => {
+    const { selectedRecommendation, uid, fetchData, dislikeLoading, setDislikeLoading } = useContext(AppContext);
+    // const [hovered, setHovered] = useState(null);
+    
+    const [hovered, setHovered] = useState(item?.sid);
 
-
+    if (!item) {
+        return null;
+    }
+        
+    // ;
+    return (
+        <div
+            style={{
+                gap:0,
+            }}
+        >
+            <SubjectItemContent 
+                item={item} 
+                domain={domain} 
+                hovered={hovered} 
+                setHovered={setHovered} 
+                
+            />
+            {otherItems && otherItems.map(otherItem => (
+                <SubjectItemContent 
+                    key={otherItem.sid} 
+                    item={otherItem} 
+                    domain={domain} 
+                    hovered={hovered} 
+                    setHovered={setHovered} 
+                    // transform= {scale(0.3)}
+                    // transition= {transform 0.3s ease}
+                />
+            ))}
+        </div>
     );
 };
 
 
-export default SubejctItem;
+
+const GroupedSubjectItems = ({ items, relationList, domain }) => {
+    // 创建分组
+    const groups = relationList.map(group => ({
+        representative: items.find(item => item.sid === group[0]),
+        others: group.slice(1).map(sid => items.find(item => item.sid === sid)).filter(item => item !== undefined)
+    }));
+    console.log(groups);
+
+    return (
+        <>
+            {groups.map((group, index) => (
+                <SubjectItem key={index} item={group.representative} domain={domain} otherItems={group.others} />
+            ))}
+        </>
+    );
+};
+
+
+
+export default GroupedSubjectItems;

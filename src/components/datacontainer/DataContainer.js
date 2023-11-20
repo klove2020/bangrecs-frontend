@@ -5,7 +5,9 @@ import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { TouchBackend } from 'react-dnd-touch-backend';
 
-import SubejctItem from './subjectitem';
+// import {SubejctItem} from './subjectitem';
+import GroupedSubjectItems from './subjectitem';
+
 
 import { Select } from 'antd';
 const { Option } = Select;
@@ -15,7 +17,7 @@ const ITEMS_PER_PAGE = 10;
 
 
 const DataContainer = () => {
-  const { dislikeLoading, data, currentPage, setCurrentPage, domain, setDomain } = useContext(AppContext);
+  const { dislikeLoading, data, currentPage, setCurrentPage, domain, setDomain, relationList } = useContext(AppContext);
 
 
   const totalPages = Math.ceil(data.length / ITEMS_PER_PAGE);
@@ -72,11 +74,10 @@ const DataContainer = () => {
         <div className="error-message">{data.message}</div>
       ) : (
 
-        currentData.map(item => (
-
-          <SubejctItem key={item.sid} item={item} domain={domain} />
-
-        ))
+        // currentData.map(item => (
+        //   <SubejctItem key={item.sid} item={item} domain={domain} />
+        // ))
+        <GroupedSubjectItems items={currentData} relationList={relationList} domain={domain} />
       )}
       <div className="pagination">
         <button onClick={handlePreviousPage} disabled={currentPage === 0}>
@@ -95,5 +96,4 @@ const DataContainer = () => {
 };
 
 export default DataContainer;
-
 

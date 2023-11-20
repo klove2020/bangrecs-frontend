@@ -37,6 +37,11 @@ export const AppProvider = ({ children }) => {
   const initStartDate = localStorage.getItem('startDate') ? new Date(localStorage.getItem('startDate')) : new Date(1900, 0, 1);
   const initEndDate = localStorage.getItem('endDate') ? new Date(localStorage.getItem('endDate')) : new Date();
 
+  const [relationList, setRelationList] = useState(
+    JSON.parse(localStorage.getItem('relationList')) || []
+  );
+  
+
   const [startDate, setStartDate] = useState(initStartDate);
   const [endDate, setEndDate] = useState(initEndDate);
 
@@ -125,10 +130,16 @@ export const AppProvider = ({ children }) => {
 
       const result = response.data;
 
+      
 
-      const detailedData = result;
+
+      const detailedData = result.data;
       setData(detailedData);
-      console.log(detailedData);
+      console.log(detailedData);      
+      const newRelationList = result.relation_list;
+      console.log(newRelationList);
+      setRelationList(newRelationList); // 更新状态
+      localStorage.setItem('relationList', JSON.stringify(newRelationList)); // 更新localStorage      
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -141,6 +152,8 @@ export const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider value={
       {
+        relationList, 
+        setRelationList,
         combinedKeys,
         redirectUriAuth,
         dislikeLoading, setDislikeLoading,
