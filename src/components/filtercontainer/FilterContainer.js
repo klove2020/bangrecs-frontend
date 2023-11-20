@@ -147,7 +147,7 @@ const FilterContainer = () => {
             <InputNumber
               min={1}
               value={resultCount}
-              max={100}
+              max={50}
               step={5}
               onChange={setResultCount}
               style={{ margin: '0 10px' }}

@@ -225,7 +225,7 @@ const SubjectItemContent = ({ item, domain, hovered, setHovered }) => {
           <h4 id="score">{item.trans_score?.toFixed(2) || item.pop || 'N/A'}</h4>
             <h4 id='score'>{item.trans_score ? item.trans_score.toFixed(2) : item.pop ? item.pop : 'N/A'}</h4>
             <h5>{_date_process_func(item.date)}, &nbsp; 
-          {item.rank && `排名: ${item.rank}`}, 评分: {<Rating score={item.score}></Rating>}</h5>
+          {item.rank && `排名: ${item.rank}`}, 评分: {item.score} {<Rating score={item.score}></Rating>}</h5>
           <p>{item.summary}</p>
         </div>
         <h4 id="stype">{getTypeExplanation(item.subject_type)}</h4>
