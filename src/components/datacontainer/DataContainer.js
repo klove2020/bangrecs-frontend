@@ -20,7 +20,7 @@ const DataContainer = () => {
   const { dislikeLoading, data, currentPage, setCurrentPage, domain, setDomain, relationList } = useContext(AppContext);
 
 
-  const totalPages = Math.ceil(data.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(relationList.length / ITEMS_PER_PAGE);
 
   const handleNextPage = () => {
     if (currentPage < totalPages - 1) {
@@ -39,7 +39,21 @@ const DataContainer = () => {
   let currentData = [];
 
   if (Array.isArray(data) && data.length > 0) {
-    currentData = data.slice(startIndex, endIndex);
+    
+    const current_relation_list = relationList.slice(startIndex, endIndex);
+
+    // console.log("test")
+    // console.log(current_relation_list)
+    
+    currentData = current_relation_list.map(sidArray => 
+        sidArray.map(sid => data.find(item => item.sid === sid))
+    ).flat();
+
+    // currentData = data.slice(startIndex, endIndex);
+
+    // console.log("test2")
+    console.log(currentData)
+
   }
   
 

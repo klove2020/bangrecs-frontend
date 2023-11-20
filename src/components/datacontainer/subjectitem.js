@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from 'react';
+import React, { useState, useRef, useContext,useEffect } from 'react';
 import AppContext from '../../contexts/AppContext';
 
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
@@ -189,11 +189,27 @@ const _date_process_func = (date) => {
 
 const SubjectItemContent = ({ item, domain, hovered, setHovered }) => {
     const isHovered = hovered === item.sid;
+
+    const hoverTimer = useRef();
+
+    const handleMouseEnter = () => {
+      // 设置延时
+      hoverTimer.current = setTimeout(() => {
+        setHovered(item.sid);
+      }, 800);
+    };
+  
+    const handleMouseLeave = () => {
+      // 清除定时器
+      clearTimeout(hoverTimer.current);
+    };
+
+
     return isHovered?(
       <div
         key={item.sid}
-        onMouseEnter={() => setHovered(item.sid)}
-        // onMouseLeave={() => setHovered(null)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         className={`item ${hovered === item.sid ? 'hovered' : ''}`}
         onClick={() => window.location.href = `https://${domain}/subject/${item.sid}`}
         style={{
@@ -218,7 +234,8 @@ const SubjectItemContent = ({ item, domain, hovered, setHovered }) => {
         // 简略版本
         <div
             key={item.sid}
-            onMouseEnter={() => setHovered(item.sid)}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
             className="item"
             onClick={() => setHovered(item.sid)} // for 移动设备
             style={{
@@ -245,9 +262,16 @@ const SubjectItemContent = ({ item, domain, hovered, setHovered }) => {
     
     const [hovered, setHovered] = useState(item?.sid);
 
+    useEffect(() => {
+        if (item) {
+            setHovered(item.sid);
+          }
+      }, [item]);
     if (!item) {
         return null;
     }
+
+    // setHovered(item.sid)
         
     // ;
     return (
