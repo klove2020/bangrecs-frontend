@@ -20,7 +20,7 @@ const DataContainer = () => {
   const { recommendation, dislikeLoading, data, currentPage, setCurrentPage, domain, setDomain, relationList } = useContext(AppContext);
 
   // if (relationList === undefined){
-  //   return null;
+  //   return "无相关数据";
   // }
 
   console.log("test111")
