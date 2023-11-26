@@ -2,4 +2,6 @@
 
 - [x] 根据relation类型限制链接
 
-- [ ] debug return时空数据还有问题
+- [x] debug return时空数据还有问题
+
+- [ ] 重写更新说明网页

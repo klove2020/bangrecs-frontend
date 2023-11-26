@@ -8,10 +8,11 @@ export const AppProvider = ({ children }) => {
   const recommendations = [
     { key: 'p', name: '推荐作品' },
     // { key: 'p_dev', name: '个性化推荐(dev)' },
-    { key: 'MF', name: '推荐作品(MF)' },
+    // { key: 'MF', name: '推荐作品(MF)' },
     { key: 'sarsrec', name: '推荐作品(SAS)' },
     // { key: 'pop', name: '流行作品' },
     { key: 'bsr', name: '推荐作品(BSR)' },
+    { key: 'HT', name: '推荐作品(HT)' },
     
     // { key: 'cp', name: '对话式推荐' },    
     { key: 'trans', name: '条目转移' },
@@ -20,7 +21,7 @@ export const AppProvider = ({ children }) => {
     
   ];
 
-  const combinedKeys = ['p', "sarsrec", 'MF', "pop", 'bsr'];
+  const combinedKeys = ['p', "sarsrec", 'MF', "pop", 'bsr', "HT"];
   
 
   const [resultCount, setResultCount] = useState(10);
@@ -32,16 +33,30 @@ export const AppProvider = ({ children }) => {
   const [filter, setFilter] = useState(localStorage.getItem('filter') || '0');
   const [recommendation, setRecommendation] = useState(localStorage.getItem('recommendation') || 'p');
   const [selectedRecommendation, setSelectedRecommendation] = useState(localStorage.getItem('selectedRecommendation') || 'p');
-  const [data, setData] = useState(JSON.parse(localStorage.getItem(`data:${selectedRecommendation}`)) || []);
+  
+  const [data, setData] = useState(() => {
+    try {
+      const storedData = localStorage.getItem(`data:${selectedRecommendation}`);
+      return storedData ? JSON.parse(storedData) : [];
+    } catch (error) {
+      return [];
+    }
+  });
+
+  
   const [uid, setUid] = useState(localStorage.getItem(`uid:${selectedRecommendation}`) || '');
   const initStartDate = localStorage.getItem('startDate') ? new Date(localStorage.getItem('startDate')) : new Date(1900, 0, 1);
   const initEndDate = localStorage.getItem('endDate') ? new Date(localStorage.getItem('endDate')) : new Date();
 
-  const [relationList, setRelationList] = useState(
-    JSON.parse(localStorage.getItem(`relationList:${selectedRecommendation}`)) || []
-    // []
-  );
-  
+  const [relationList, setRelationList] = useState(() => {
+    try {
+      const storedRelationList = localStorage.getItem(`relationList:${selectedRecommendation}`);
+      return storedRelationList ? JSON.parse(storedRelationList) : [];
+    } catch (error) {
+      return [];
+    }
+  });
+    
 
   const [startDate, setStartDate] = useState(initStartDate);
   const [endDate, setEndDate] = useState(initEndDate);
@@ -70,7 +85,7 @@ export const AppProvider = ({ children }) => {
     { value: '0', label: '全部类型' },
     { value: '1', label: '书籍' },
     { value: '2', label: '动漫' },
-    { value: '3', label: '音乐' },
+    // { value: '3', label: '音乐' },
     { value: '4', label: '游戏' },
     { value: '6', label: '三次元' },
   ];

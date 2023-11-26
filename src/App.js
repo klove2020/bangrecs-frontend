@@ -68,15 +68,23 @@ const AppContent = () => {
   useEffect(() => {
     // 初始化或当 selectedRecommendation 更改时，更新 data
     const storedData = localStorage.getItem(`data:${selectedRecommendation}`);
-    setData(storedData ? JSON.parse(storedData) : []);
+    try {
+      setData(storedData ? JSON.parse(storedData) : []);
+    } catch (error) {
+      setData([]); // 在解析失败的情况下设置为空数组
+    }
 
     const storeUid = localStorage.getItem(`uid:${selectedRecommendation}`);
     setUid(storeUid ? storeUid:"")
 
 
     const storerelationList = localStorage.getItem(`relationList:${selectedRecommendation}`);
-    setRelationList(storerelationList? JSON.parse(storerelationList):[])
-    
+    try {
+      setRelationList(storerelationList ? JSON.parse(storerelationList) : []);
+    } catch (error) {
+      setRelationList([]); 
+    }
+        
   }, [selectedRecommendation]);
 
   useEffect(() => {

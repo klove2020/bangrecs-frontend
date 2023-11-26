@@ -19,24 +19,17 @@ const ITEMS_PER_PAGE = 10;
 const DataContainer = () => {
   const { recommendation, dislikeLoading, data, currentPage, setCurrentPage, domain, setDomain, relationList } = useContext(AppContext);
 
-  // if (relationList === undefined){
-  //   return "无相关数据";
-  // }
-
   console.log("test111")
   console.log(relationList)
   console.log("test222")
 
   let totalPages = 1;
-  // if
-  //   (recommendation === "trans") {
-  //   totalPages = Math.ceil(data.length / ITEMS_PER_PAGE);
-  // }
-  // else {
-  //   totalPages = Math.ceil(relationList.length / ITEMS_PER_PAGE);
-  // }
 
-  totalPages = Math.ceil(relationList.length / ITEMS_PER_PAGE);
+  try {
+    totalPages = Math.ceil(relationList.length / ITEMS_PER_PAGE);
+  } catch (error) {
+    return "无相关数据"; // 或者 return null; 如果你想明确返回空值
+  }
 
   const handleNextPage = () => {
     if (currentPage < totalPages - 1) {
@@ -55,19 +48,6 @@ const DataContainer = () => {
   let currentData = [];
 
   if (Array.isArray(data) && data.length > 0) {
-
-
-
-    // if
-    //   (recommendation === "trans") {
-    //   currentData = data.slice(startIndex, endIndex);
-    // }
-    // else {
-    //   const current_relation_list = relationList.slice(startIndex, endIndex);
-    //   currentData = current_relation_list.map(sidArray =>
-    //     sidArray.map(sid => data.find(item => item.sid === sid))
-    //   ).flat();
-    // }
 
     const current_relation_list = relationList.slice(startIndex, endIndex);
     currentData = current_relation_list.map(sidArray =>
