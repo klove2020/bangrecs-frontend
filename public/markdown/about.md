@@ -10,4 +10,4 @@
 * 每一个参与相关讨论的ban友
 
 ### 开发人员
-* klion: [bangumi@klove](https://bgm.tv/user/klove) | [telegram@klion2](https://t.me/klion2) 
+* klion: [bangumi:@klove](https://bgm.tv/user/klove) | [telegram:@klion2](https://t.me/klion2) 

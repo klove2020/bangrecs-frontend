@@ -12,7 +12,7 @@ import DataContainer from './components/datacontainer/DataContainer';
 import { AppProvider } from './contexts/AppContext';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import {AboutPage, UpdatePage} from './components/header/MdPage'; // 引入About组件
+import {AboutPage, UpdatePage, ReportPage} from './components/header/MdPage'; // 引入About组件
 
 import Header from './components/header/Header'; // 引入Header组件
 
@@ -106,6 +106,7 @@ return (
     <Routes>
       <Route path="/bgmrec/about" element={<AboutPage />} />
       <Route path="/bgmrec/update" element={<UpdatePage />} />
+      <Route path="/bgmrec/report" element={<ReportPage />} />
       {/* <Route path="/bgmrec/thank" element={<ThankPage />} /> */}
       <Route path="/bgmrec" element={
         <div className="app-container">

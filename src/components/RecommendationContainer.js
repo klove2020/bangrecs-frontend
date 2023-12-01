@@ -34,7 +34,9 @@ function _Tooltip({ x }) {
       return <TooltipComponent text="模型是SARSRec, 默认时间区间05年-20年, 候选集条目评分数量超过500" />;
     case "bsr":
       return <TooltipComponent text="模型是BSR, Attention机制的变体" />;
-    
+    case "HT":
+      return <TooltipComponent text="混合的树模型, 不同的条目类型使用不同的模型" />;
+      
     default:
       return null;
   }

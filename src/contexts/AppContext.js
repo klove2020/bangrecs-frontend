@@ -11,7 +11,7 @@ export const AppProvider = ({ children }) => {
     // { key: 'MF', name: '推荐作品(MF)' },
     { key: 'sarsrec', name: '推荐作品(SAS)' },
     // { key: 'pop', name: '流行作品' },
-    { key: 'bsr', name: '推荐作品(BSR)' },
+    // { key: 'bsr', name: '推荐作品(BSR)' },
     { key: 'HT', name: '推荐作品(HT)' },
     
     // { key: 'cp', name: '对话式推荐' },    
@@ -132,6 +132,8 @@ export const AppProvider = ({ children }) => {
             return axios.post(`https://bangrecs.net/api/v4/rec/${uid ? uid : '-1'}/`, requestData);          
           case "trans":
             return axios.post(`https://bangrecs.net/api/v4/trans/${uid ? uid : '-1'}/`, requestData);
+          case "s":
+            return axios.post(`https://bangrecs.net/api/v4/search/`, requestData);
           default:
             return axios.post(`https://bangrecs.net/api/v4/rec/${uid ? uid : '-1'}/`, requestData);
         }
