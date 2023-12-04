@@ -124,18 +124,22 @@ export const AppProvider = ({ children }) => {
         IsTagFilter: isTagFilterEnabled,
       };
 
+      const axiosConfig = {
+        timeout: 6000 // 设置超时时间为6秒
+      };
+
       const search_button = () => {
         switch (selectedRecommendation) {
           case "p_dev":
-            return axios.post(`https://bangrecs.net/api/v4/rec_dev/${uid ? uid : '-1'}/`, requestData);
+            return axios.post(`https://bangrecs.net/api/v4/rec_dev/${uid ? uid : '-1'}/`, requestData, axiosConfig);
           case "pop":
-            return axios.post(`https://bangrecs.net/api/v4/rec/${uid ? uid : '-1'}/`, requestData);          
+            return axios.post(`https://bangrecs.net/api/v4/rec/${uid ? uid : '-1'}/`, requestData, axiosConfig);          
           case "trans":
-            return axios.post(`https://bangrecs.net/api/v4/trans/${uid ? uid : '-1'}/`, requestData);
+            return axios.post(`https://bangrecs.net/api/v4/trans/${uid ? uid : '-1'}/`, requestData, axiosConfig);
           case "s":
-            return axios.post(`https://bangrecs.net/api/v4/search/`, requestData);
+            return axios.post(`https://bangrecs.net/api/v4/search/`, requestData, axiosConfig);
           default:
-            return axios.post(`https://bangrecs.net/api/v4/rec/${uid ? uid : '-1'}/`, requestData);
+            return axios.post(`https://bangrecs.net/api/v4/rec/${uid ? uid : '-1'}/`, requestData, axiosConfig);
         }
       }
 
