@@ -31,11 +31,11 @@ function _Tooltip({ x }) {
     case "s":
       return <TooltipComponent text="标记该标签的人数要>=10, 被该标签标记过的作品要>=10" />;
     case "sarsrec":
-      return <TooltipComponent text="模型是SARSRec, 默认时间区间05年-20年, 候选集条目评分数量超过500" />;
+      return <TooltipComponent text="模型是SASRec, 默认时间区间05年-20年, 候选集条目评分数量超过500" />;
     case "bsr":
       return <TooltipComponent text="模型是BSR, Attention机制的变体" />;
     case "HT":
-      return <TooltipComponent text="混合的树模型, 不同的条目类型使用不同的模型" />;
+      return <TooltipComponent text="混合模型, 不同的条目类型使用不同的模型, 候选集条目排除了冷门作品" />;
       
     default:
       return null;

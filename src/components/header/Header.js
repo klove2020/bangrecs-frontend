@@ -17,7 +17,7 @@ const Header = () => {
     "主页": "/bgmrec",
     '更新说明': "/bgmrec/update",
     '关于网站': "/bgmrec/about",
-    '技术报导': "/bgmrec/report",
+    // '技术报导': "/bgmrec/report",
   }
 
   const githubUrl = "https://github.com/klove2020/bangrecs-frontend"; // 设置GitHub仓库链接

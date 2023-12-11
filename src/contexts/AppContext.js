@@ -10,18 +10,18 @@ export const AppProvider = ({ children }) => {
     // { key: 'p_dev', name: '个性化推荐(dev)' },
     // { key: 'MF', name: '推荐作品(MF)' },
     { key: 'sarsrec', name: '推荐作品(SAS)' },
-    // { key: 'pop', name: '流行作品' },
+    { key: 'pop', name: '流行作品' },
     // { key: 'bsr', name: '推荐作品(BSR)' },
     { key: 'HT', name: '推荐作品(HT)' },
     
     // { key: 'cp', name: '对话式推荐' },    
     { key: 'trans', name: '条目转移' },
-    { key: 's', name: '标签搜索' },
+    // { key: 's', name: '标签搜索' },
     
     
   ];
 
-  const combinedKeys = ['p', "sarsrec", 'MF', "pop", 'bsr', "HT"];
+  const combinedKeys = ['p', "sarsrec", 'MF', 'bsr', "HT"];
   
 
   const [resultCount, setResultCount] = useState(10);
@@ -125,7 +125,7 @@ export const AppProvider = ({ children }) => {
       };
 
       const axiosConfig = {
-        timeout: 6000 // 设置超时时间为6秒
+        timeout: 8000 // 设置超时时间为6秒
       };
 
       const search_button = () => {
@@ -133,7 +133,8 @@ export const AppProvider = ({ children }) => {
           case "p_dev":
             return axios.post(`https://bangrecs.net/api/v4/rec_dev/${uid ? uid : '-1'}/`, requestData, axiosConfig);
           case "pop":
-            return axios.post(`https://bangrecs.net/api/v4/rec/${uid ? uid : '-1'}/`, requestData, axiosConfig);          
+            return axios.post(`https://bangrecs.net/api/v4/rec/${uid ? uid : '-1'}/`, requestData);
+            // return axios.post(`https://bangrecs.net/api/v4/rec/${uid ? uid : '-1'}/`, requestData, axiosConfig);          
           case "trans":
             return axios.post(`https://bangrecs.net/api/v4/trans/${uid ? uid : '-1'}/`, requestData, axiosConfig);
           case "s":
