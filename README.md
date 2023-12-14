@@ -1,6 +1,4 @@
-网页: https://bangrecs.net
+Bangrecs 
+* [线上网页](https://bangrecs.net) | [前端仓库](https://github.com/klove2020/bangrecs-frontend) | [后端仓库](https://github.com/klove2020/bangrecs)
 
-bangrecs 网页源码 : https://github.com/klove2020/bangrecs-frontend
-
-bangrecs API, 推荐模型源码 : https://github.com/klove2020/bangrecs
-
+* bangrecs API 文档 : [github仓库](https://github.com/klove2020/bangrecs-apidocs-swagger) | [Swagger UI](https://bangrecs.net/api/docs)
