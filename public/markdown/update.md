@@ -1,5 +1,8 @@
 ## 更新记录
 
+23.12.14
+* 增加 [API 文档](https://bangrecs.net/api/docs)
+
 23.12.11
 * HT模型调整
 
