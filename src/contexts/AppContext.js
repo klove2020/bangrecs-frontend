@@ -9,10 +9,10 @@ export const AppProvider = ({ children }) => {
     { key: 'p', name: '推荐作品' },
     // { key: 'p_dev', name: '个性化推荐(dev)' },
     // { key: 'MF', name: '推荐作品(MF)' },
+    { key: 'HT', name: '推荐作品(HT)' },
     { key: 'sarsrec', name: '推荐作品(SAS)' },
     { key: 'pop', name: '流行作品' },
     // { key: 'bsr', name: '推荐作品(BSR)' },
-    { key: 'HT', name: '推荐作品(HT)' },
     
     // { key: 'cp', name: '对话式推荐' },    
     { key: 'trans', name: '条目转移' },
@@ -21,7 +21,7 @@ export const AppProvider = ({ children }) => {
     
   ];
 
-  const combinedKeys = ['p', "sarsrec", 'MF', 'bsr', "HT"];
+  const combinedKeys = ['p', 'HT', "sarsrec", 'MF', 'bsr'];
   
 
   const [resultCount, setResultCount] = useState(10);

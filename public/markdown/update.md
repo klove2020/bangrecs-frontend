@@ -1,5 +1,8 @@
 ## 更新记录
 
+23.12.15
+* 调整条目宽度
+
 23.12.14
 * 增加 [API 文档](https://bangrecs.net/api/docs)
 
