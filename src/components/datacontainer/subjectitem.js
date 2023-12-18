@@ -211,7 +211,8 @@ const SubjectItemContent = ({ item, domain, hovered, setHovered }) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         className={`item ${hovered === item.sid ? 'hovered' : ''}`}
-        onClick={() => window.location.href = `https://${domain}/subject/${item.sid}`}
+        // onClick={() => window.location.href = `https://${domain}/subject/${item.sid}`}
+        onClick={() => window.open(`https://${domain}/subject/${item.sid}`, '_blank')}
         style={{
           position: 'relative',
           background: getColorByType(item.subject_type),

@@ -235,7 +235,7 @@ const FilterContainer = () => {
 
                   <div className="filter-group" style={{ backgroundColor: hoveredGroupIndex === groupIndex ? 'rgba(255, 0, 0, 0.2)' : 'white' }} key={groupIndex}>
                     <div className="tags-container">
-
+ 
 
                       {tags.map((tag, tagIndex) => (
                         <div key={tagIndex} className="tag-input-container">
