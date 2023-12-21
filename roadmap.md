@@ -6,7 +6,7 @@
 
 - [x] 连接超时重新发送请求
 
-- [ ] 卡片需要调整
+- [x] 卡片需要调整
 
 <!-- - [ ] 请求和网页链接要对应 https://bangrecs.net/bgmrec/?uid=klove&model=p (暂缓) -->
 
